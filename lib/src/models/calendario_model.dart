@@ -4,28 +4,31 @@ Calendario calendarioFromJson(String str) => Calendario.fromJson(json.decode(str
 
 class Calendario {
     Calendario({
-        this.tituloCal,
-        this.subtituloCal,
-        this.fechaCal,
-        this.horaCal,
-        this.iconCal1,
-        this.iconCal2,
+        this.equipolocal,
+        this.equipovisitante,
+        this.estadio,
+        this.fecha,
+        this.hora,
+        this.icon1,
+        this.icon2,
     });
 
-    String ? tituloCal;
-    String ? subtituloCal;
-    String ? fechaCal;
-    String ? horaCal;
-    String ? iconCal1;
-    String ? iconCal2;
+    String ? equipolocal;
+    String ? equipovisitante;
+    String ? estadio;
+    String ? fecha;
+    String ? hora;
+    String ? icon1;
+    String ? icon2;
 
     factory Calendario.fromJson(Map<String, dynamic> json) => Calendario(
-        tituloCal: json["titulo_cal"],
-        subtituloCal: json["subtitulo_cal"],
-        fechaCal: json["fecha_cal"],
-        horaCal: json["hora_cal"],
-        iconCal1: json["icon_cal_1"],
-        iconCal2: json["icon_cal_2"],
+        equipolocal: json["equipo_local"],
+        equipovisitante: json["equipo_visitante"],
+        estadio: json["estadio"],
+        fecha: json["fecha"],
+        hora: json["hora"],
+        icon1: json["icon1"],
+        icon2: json["icon2"],
     );
 
 }

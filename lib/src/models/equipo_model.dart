@@ -4,16 +4,40 @@ Equipos equiposFromJson(String str) => Equipos.fromJson(json.decode(str));
 
 class Equipos {
     Equipos({
-        this.nombreEqui,
-        this.iconEqui,
+        this.nombre,
+        this.icono,
+        this.pj,
+        this.pg,
+        this.pe,
+        this.pp,
+        this.gf,
+        this.gc,
+        this.gd,
+        this.pts,
     });
 
-    String ? nombreEqui;
-    String ? iconEqui;
-
+    String ? nombre;
+    String ? icono;
+    int ? pj;
+    int ? pg;
+    int ? pe;
+    int ? pp;
+    int ? gf;
+    int ? gc;
+    int ? gd;
+    int ? pts;
+ 
     factory Equipos.fromJson(Map<String, dynamic> json) => Equipos(
-        nombreEqui: json["Nombre_equi"],
-        iconEqui: json["Icon_equi"],
+        nombre: json["nombre"],
+        icono: json["icono"],
+        pj: json["PJ"],
+        pg: json["PG"],
+        pe: json["PE"],
+        pp: json["PP"],
+        gf: json["GF"],
+        gc: json["GC"],
+        gd: json["GD"],
+        pts: json["Pts"],
     );
 
 }
