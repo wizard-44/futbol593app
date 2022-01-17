@@ -6,6 +6,7 @@ class Equipos {
     Equipos({
         this.nombre,
         this.icono,
+        this.historia,
         this.pj,
         this.pg,
         this.pe,
@@ -18,6 +19,7 @@ class Equipos {
 
     String ? nombre;
     String ? icono;
+    String ? historia;
     int ? pj;
     int ? pg;
     int ? pe;
@@ -30,6 +32,7 @@ class Equipos {
     factory Equipos.fromJson(Map<String, dynamic> json) => Equipos(
         nombre: json["nombre"],
         icono: json["icono"],
+        historia: json["historia"],
         pj: json["PJ"],
         pg: json["PG"],
         pe: json["PE"],

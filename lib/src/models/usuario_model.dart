@@ -1,28 +1,28 @@
 import 'dart:convert';
 
-PerfilUsuario perfilUsuarioFromJson(String str) => PerfilUsuario.fromJson(json.decode(str));
+Usuario perfilUsuarioFromJson(String str) => Usuario.fromJson(json.decode(str));
 
-class PerfilUsuario {
-    PerfilUsuario({
-        this.nombrePu,
-        this.iconPu,
-        this.descripcionPu,
-        this.icon2PreferenciaPu,
-        this.nombrePreferenciaPe,
+class Usuario {
+    Usuario({
+        this.nombre,
+        this.icon,
+        this.descripcion,
+        this.icon2Preferencia,
+        this.nombrePreferencia,
     });
 
-    String ? nombrePu;
-    String ? iconPu;
-    String ? descripcionPu;
-    String ? icon2PreferenciaPu;
-    String ? nombrePreferenciaPe;
+    String ? nombre;
+    String ? icon;
+    String ? descripcion;
+    String ? icon2Preferencia;
+    String ? nombrePreferencia;
 
-    factory PerfilUsuario.fromJson(Map<String, dynamic> json) => PerfilUsuario(
-        nombrePu: json["Nombre_pu"],
-        iconPu: json["icon_pu"],
-        descripcionPu: json["descripcion_pu"],
-        icon2PreferenciaPu: json["icon2_preferencia_pu"],
-        nombrePreferenciaPe: json["nombre_preferencia_pe"],
+    factory Usuario.fromJson(Map<String, dynamic> json) => Usuario(
+        nombre: json["Nombre_pu"],
+        icon: json["icon_pu"],
+        descripcion: json["descripcion_pu"],
+        icon2Preferencia: json["icon2_preferencia_pu"],
+        nombrePreferencia: json["nombre_preferencia_pe"],
     );
 
 }

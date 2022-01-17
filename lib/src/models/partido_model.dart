@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-Calendario calendarioFromJson(String str) => Calendario.fromJson(json.decode(str));
+Partido calendarioFromJson(String str) => Partido.fromJson(json.decode(str));
 
-class Calendario {
-    Calendario({
+class Partido {
+    Partido({
         this.equipolocal,
         this.equipovisitante,
         this.estadio,
@@ -21,7 +21,7 @@ class Calendario {
     String ? icon1;
     String ? icon2;
 
-    factory Calendario.fromJson(Map<String, dynamic> json) => Calendario(
+    factory Partido.fromJson(Map<String, dynamic> json) => Partido(
         equipolocal: json["equipo_local"],
         equipovisitante: json["equipo_visitante"],
         estadio: json["estadio"],
