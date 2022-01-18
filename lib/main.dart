@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:futbol593/src/pages/SplashScreen.dart';
 import 'package:futbol593/src/pages/home_page.dart';
 import 'package:futbol593/src/providers/main_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,10 +32,12 @@ class App extends StatelessWidget {
                     debugShowCheckedModeBanner: false,
                     title: 'Futbol593',
                     theme: AppTheme.themeData(mainProvider.mode),
-                    home: const HomePage()));
+                    home: const SplashScreen()));
           }
           return const SizedBox.square(
-              dimension: 100.0, child: CircularProgressIndicator());
+              dimension: 100.0,
+              child: CircularProgressIndicator(
+                color:Colors.white));
         });
   }
 }
