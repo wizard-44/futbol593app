@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:futbol593/src/pages/SplashScreen.dart';
-import 'package:futbol593/src/pages/home_page.dart';
 import 'package:futbol593/src/providers/main_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:futbol593/src/theme/main_theme.dart';

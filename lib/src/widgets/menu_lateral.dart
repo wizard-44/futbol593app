@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:futbol593/src/pages/registrar_page.dart';
+import 'package:futbol593/src/pages/home_page.dart';
+import 'package:futbol593/src/widgets/equipos_list.dart';
 
 class MenuLateral extends StatelessWidget {
+  const MenuLateral({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -21,7 +24,12 @@ class MenuLateral extends StatelessWidget {
             ListTile(
                 leading: const Icon(Icons.airplay_rounded),
                 title: const Text('Inicio'),
-                onTap: () {}
+                onTap: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => const HomePage()));
+                }
             ),
             ListTile(
             leading: const Icon(Icons.calendar_today_rounded),
@@ -31,17 +39,24 @@ class MenuLateral extends StatelessWidget {
             ListTile(
             leading: const Icon(Icons.group_work_rounded),
             title: const Text('Equipos'),
-            onTap: () {}
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const EquipoListCard()),
+              );
+            }
             ),
             ListTile(
-            leading: const Icon(Icons.pivot_table_chart_rounded),
-            title: const Text('Tabla Posiciones'),
-            onTap: () {}
+              leading: const Icon(Icons.pivot_table_chart_rounded),
+              title: const Text('Tabla Posiciones'),
+              onTap: () {}
             ),
             ListTile(
-            leading: const Icon(Icons.account_box_rounded),
-            title: const Text('Registrarse'),
-            onTap:() {}
+              leading: const Icon(Icons.account_box_rounded),
+              title: const Text('Registrarse'),
+              onTap: () {}
             ),
       ]),
     );

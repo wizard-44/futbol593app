@@ -1,46 +1,57 @@
+// To parse this JSON data, do
+//
+//     final equipo = equipoFromJson(jsonString);
+
 import 'dart:convert';
 
-Equipos equiposFromJson(String str) => Equipos.fromJson(json.decode(str));
+Equipo equipoFromJson(String str) => Equipo.fromJson(json.decode(str));
 
-class Equipos {
-    Equipos({
+String equipoToJson(Equipo data) => json.encode(data.toJson());
+
+class Equipo {
+    Equipo({
+        this.idEquipo,
         this.nombre,
-        this.icono,
+        this.urlfoto,
         this.historia,
-        this.pj,
-        this.pg,
-        this.pe,
-        this.pp,
-        this.gf,
-        this.gc,
-        this.gd,
-        this.pts,
+        this.partidosGanados,
+        this.partidosEmpatados,
+        this.partidosPerdidos,
+        this.golesFavor,
+        this.golesEncontra,
     });
 
-    String ? nombre;
-    String ? icono;
-    String ? historia;
-    int ? pj;
-    int ? pg;
-    int ? pe;
-    int ? pp;
-    int ? gf;
-    int ? gc;
-    int ? gd;
-    int ? pts;
- 
-    factory Equipos.fromJson(Map<String, dynamic> json) => Equipos(
+    String ?idEquipo;
+    String ?nombre;
+    String ?urlfoto;
+    String ?historia;
+    int ?partidosGanados;
+    int ?partidosEmpatados;
+    int ?partidosPerdidos;
+    int ?golesFavor;
+    int ?golesEncontra;
+
+    factory Equipo.fromJson(Map<String, dynamic> json) => Equipo(
+        idEquipo: json["idEquipo"],
         nombre: json["nombre"],
-        icono: json["icono"],
+        urlfoto: json["urlfoto"],
         historia: json["historia"],
-        pj: json["PJ"],
-        pg: json["PG"],
-        pe: json["PE"],
-        pp: json["PP"],
-        gf: json["GF"],
-        gc: json["GC"],
-        gd: json["GD"],
-        pts: json["Pts"],
+        partidosGanados: json["partidosGanados"],
+        partidosEmpatados: json["partidosEmpatados"],
+        partidosPerdidos: json["partidosPerdidos"],
+        golesFavor: json["golesFavor"],
+        golesEncontra: json["golesEncontra"],
     );
 
+    Map<String, dynamic> toJson() => {
+        "idEquipo": idEquipo,
+        "nombre": nombre,
+        "urlfoto": urlfoto,
+        "historia": historia,
+        "partidosGanados": partidosGanados,
+        "partidosEmpatados": partidosEmpatados,
+        "partidosPerdidos": partidosPerdidos,
+        "golesFavor": golesFavor,
+        "golesEncontra": golesEncontra,
+    };
 }
