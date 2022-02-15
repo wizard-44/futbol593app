@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:futbol593/src/providers/main_provider.dart';
 import 'package:futbol593/src/widgets/equipos_list.dart';
 import 'package:futbol593/src/widgets/menu_lateral.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,10 +16,31 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
-    final mainProvider = Provider.of<MainProvider>(context, listen: true);
     return SafeArea(
       child: Scaffold(
+        endDrawer: Drawer(
+          child: ListView(
+            children: [
+              Card(
+                child: ListTile(
+                  leading: const Icon(Icons.settings),
+                  onTap: () => Navigator.pushNamed(context, "/settings"),
+                  title: const Text("Ajustes"),
+                ),
+              )
+            ],
+          ),
+        ),
         appBar: AppBar(
+          actions: [
+            Builder(
+              builder: (context) => IconButton(
+                    icon: const Icon(Icons.app_settings_alt_rounded),
+                    onPressed: () => Scaffold.of(context).openEndDrawer(),
+                    tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              ),
+            ),
+          ],
           title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -33,15 +51,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          actions:<Widget>[
-            Switch(
-                value: mainProvider.mode,
-                onChanged: (bool value) async {
-                  mainProvider.mode = value;
-                  final prefs = await SharedPreferences.getInstance();
-                  await prefs.setBool("mode", value);
-                }),
-          ],
         ),
         body: Center(
           child: Container(
@@ -65,7 +74,8 @@ class _HomePageState extends State<HomePage> {
                   Text("Equipos",style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 30,
-                    color: Colors.black),)
+                    color: Colors.black),
+                  ),
                 ]
               ),
             ),

@@ -48,7 +48,7 @@ class _JugadorListWidgetState extends State<JugadorListWidget> {
                     ))
                   : _jugadores!.isEmpty
                       ? const Center(
-                          child: Text("No hay Equipos Disponibles..."))
+                          child: Text("No hay Jugadores Disponibles..."))
                       : ListView(
                           children: _jugadores!
                               .map((e) => JugadoresCard(jugador: e))

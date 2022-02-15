@@ -3,7 +3,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:futbol593/src/pages/home_page.dart';
+import 'package:futbol593/src/providers/main_provider.dart';
+import 'package:provider/provider.dart';
 
+import 'login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -15,14 +18,21 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    
     super.initState();
-    Timer(const Duration(seconds:5), ()=>Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>const HomePage())));
-
   }
 
   @override
   Widget build(BuildContext context) {
+    final mainProvider = Provider.of<MainProvider>(context, listen: true);
+    Timer(
+      const Duration(seconds:5), ()=>Navigator.pushReplacement(
+        context,MaterialPageRoute(
+          builder: (context)=>mainProvider.token == ""
+          ? const LoginPage()
+          : const HomePage(),
+        )
+      )
+    );
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -40,9 +50,20 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/icons/logo.gif', height: 350.0, width: 350.0,)
-          , const CircularProgressIndicator(
-              color: Colors.indigo,
+            Image.asset('assets/icons/logo.gif', height: 350.0, width: 350.0,),
+            const CircularProgressIndicator(
+              color: Colors.white,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top: 150),
+              child: Text("Bienvenido...",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 25,
+                  color: Colors.white
+                ),
+              ),
             ),
           ],
         ),

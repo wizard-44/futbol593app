@@ -10,36 +10,39 @@ class PerfilEquipoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-            body: CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  floating: true,
-                  pinned: true,
-                  expandedHeight: 180.h,
-                  flexibleSpace: FlexibleSpaceBar(
-                      title: Text(equipo.nombre ?? "",
-                          overflow: TextOverflow.ellipsis),
-                      background: Image(
-                          image: NetworkImage(equipo.urlfoto ?? ""),
-                          fit: BoxFit.contain)),
-                ),
-                SliverFillRemaining(
-                    child: EquipoDetallesWidget(equipo: equipo)),
-              ],
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              floating: true,
+              pinned: true,
+              expandedHeight: 180.h,
+              flexibleSpace: FlexibleSpaceBar(
+                  title: Text(equipo.nombre ?? "",
+                      overflow: TextOverflow.ellipsis),
+                  background: Image(
+                      image: NetworkImage(equipo.urlfoto ?? ""),
+                      fit: BoxFit.contain)),
             ),
-            floatingActionButton: FloatingActionButton(
-              child: const Icon(Icons.add),
-              tooltip: "Añadir Jugador",
-              onPressed: () {
-                Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RegistrarJugador(
-                                idEquipo: equipo.idEquipo ?? "")),
-                      );
-              },
+            SliverFillRemaining(
+              child: EquipoDetallesWidget(equipo: equipo)
             ),
-            ));
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          tooltip: "Añadir Jugador",
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => RegistrarJugador(
+                      idEquipo: equipo.idEquipo ?? "")
+              ),
+            );
+          },
+        ),
+      )
+    );
   }
 }

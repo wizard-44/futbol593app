@@ -20,44 +20,41 @@ class MenuLateral extends StatelessWidget {
               const SizedBox(
                 height: 10.0,
               ),
-            ])),
-            ListTile(
-                leading: const Icon(Icons.airplay_rounded),
-                title: const Text('Inicio'),
-                onTap: () {
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => const HomePage()));
-                }
-            ),
-            ListTile(
-            leading: const Icon(Icons.calendar_today_rounded),
-            title: const Text('Calendario'),
-            onTap: () {}
-            ),
-            ListTile(
-            leading: const Icon(Icons.group_work_rounded),
-            title: const Text('Equipos'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        const EquipoListCard()),
-              );
-            }
-            ),
-            ListTile(
-              leading: const Icon(Icons.pivot_table_chart_rounded),
-              title: const Text('Tabla Posiciones'),
-              onTap: () {}
-            ),
-            ListTile(
-              leading: const Icon(Icons.account_box_rounded),
-              title: const Text('Registrarse'),
-              onTap: () {}
-            ),
+            ])
+        ),
+        ListTile(
+          leading: const Icon(Icons.airplay_rounded),
+          title: const Text('Inicio'),
+          onTap: () {
+            Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => const HomePage()));
+          }
+        ),
+        ListTile(
+          leading: const Icon(Icons.calendar_today_rounded),
+          title: const Text('Calendario'),
+          onTap: () {}
+        ),
+        ListTile(
+          leading: const Icon(Icons.group_work_rounded),
+          title: const Text('Equipos'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    const EquipoListCard()
+              ),
+            );
+          }
+        ),
+        ListTile(
+          leading: const Icon(Icons.pivot_table_chart_rounded),
+          title: const Text('Tabla Posiciones'),
+          onTap: () {}
+        ),
       ]),
     );
   }

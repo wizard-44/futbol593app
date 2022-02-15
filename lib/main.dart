@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:futbol593/src/pages/SplashScreen.dart';
+import 'package:futbol593/src/pages/login_page.dart';
+import 'package:futbol593/src/pages/settings_page.dart';
+import 'package:futbol593/src/pages/signup_page.dart';
 import 'package:futbol593/src/providers/main_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:futbol593/src/theme/main_theme.dart';
@@ -26,17 +29,26 @@ class App extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ScreenUtilInit(
-                designSize: const Size(360, 690),
-                builder: () => MaterialApp(
-                    debugShowCheckedModeBanner: false,
-                    title: 'Futbol593',
-                    theme: AppTheme.themeData(mainProvider.mode),
-                    home: const SplashScreen()));
+              designSize: const Size(360, 690),
+              builder: () => MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Futbol593',
+                theme: AppTheme.themeData(mainProvider.mode),
+                routes:{
+                  "/login" : (context) => const LoginPage(),
+                  "/settings" : (context) => const SettingPage(),
+                  "/signup" : (context) => const SignUpPage(),
+                },
+                home: const SplashScreen(),
+              )
+            );
           }
           return const SizedBox.square(
               dimension: 100.0,
               child: CircularProgressIndicator(
-                color:Colors.white));
-        });
+                color:Colors.white)
+          );
+        }
+    );
   }
 }
