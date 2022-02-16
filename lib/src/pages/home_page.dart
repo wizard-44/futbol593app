@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:futbol593/src/pages/settings_page.dart';
 import 'package:futbol593/src/widgets/equipos_list.dart';
 import 'package:futbol593/src/widgets/menu_lateral.dart';
 
@@ -18,26 +19,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        endDrawer: Drawer(
-          child: ListView(
-            children: [
-              Card(
-                child: ListTile(
-                  leading: const Icon(Icons.settings),
-                  onTap: () => Navigator.pushNamed(context, "/settings"),
-                  title: const Text("Ajustes"),
-                ),
-              )
-            ],
-          ),
-        ),
         appBar: AppBar(
           actions: [
             Builder(
               builder: (context) => IconButton(
-                    icon: const Icon(Icons.app_settings_alt_rounded),
-                    onPressed: () => Scaffold.of(context).openEndDrawer(),
-                    tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+                icon: const Icon(Icons.app_settings_alt_rounded),
+                onPressed: (){
+                  Navigator.push(context,MaterialPageRoute(
+                      builder: (BuildContext context) => const SettingPage()
+                  ));
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
               ),
             ),
           ],

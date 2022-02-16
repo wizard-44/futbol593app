@@ -23,44 +23,46 @@ class _EquipoListCardState extends State<EquipoListCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Equipos"),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 15.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Expanded(
-                child: _equipos == null
-                    ? Center(
-                        child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          CircularProgressIndicator(
-                            strokeWidth: 4.0,
-                            color: Colors.indigo,
-                          ),
-                          Padding(padding: EdgeInsets.all(8.0)),
-                          Text("Cargando Equipos",
-                              style: TextStyle(
-                                fontSize: 25,
-                              ))
-                        ],
-                      ))
-                    : _equipos!.isEmpty
-                        ? const Center(
-                            child: Text("No hay Equipos Disponibles..."))
-                        : ListView(
-                            children: _equipos!
-                                .map((e) => EquiposCard(equipo: e))
-                                .toList(),
-                          )
-            )
-          ]
-        )
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Equipos"),
+          centerTitle: true,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 15.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                  child: _equipos == null
+                      ? Center(
+                          child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            CircularProgressIndicator(
+                              strokeWidth: 4.0,
+                              color: Colors.indigo,
+                            ),
+                            Padding(padding: EdgeInsets.all(8.0)),
+                            Text("Cargando Equipos",
+                                style: TextStyle(
+                                  fontSize: 25,
+                                ))
+                          ],
+                        ))
+                      : _equipos!.isEmpty
+                          ? const Center(
+                              child: Text("No hay Equipos Disponibles..."))
+                          : ListView(
+                              children: _equipos!
+                                  .map((e) => EquiposCard(equipo: e))
+                                  .toList(),
+                            )
+              )
+            ]
+          )
+        ),
       ),
     );
   }

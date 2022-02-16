@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:futbol593/src/pages/home_page.dart';
 import 'package:futbol593/src/providers/main_provider.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:provider/provider.dart';
 
 import 'login_page.dart';
@@ -29,7 +30,9 @@ class _SplashScreenState extends State<SplashScreen> {
         context,MaterialPageRoute(
           builder: (context)=>mainProvider.token == ""
           ? const LoginPage()
-          : const HomePage(),
+          : JwtDecoder.isExpired(mainProvider.token)
+            ? const LoginPage()    
+            : const HomePage(),
         )
       )
     );
