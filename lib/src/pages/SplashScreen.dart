@@ -1,12 +1,10 @@
 // ignore_for_file: file_names
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:futbol593/src/pages/home_page.dart';
 import 'package:futbol593/src/providers/main_provider.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:provider/provider.dart';
-
 import 'login_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -53,7 +51,10 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/icons/logo.gif', height: 350.0, width: 350.0,),
+            Image.asset('assets/icons/logo.gif',
+              height: 350.0,
+              width: 350.0
+            ),
             const CircularProgressIndicator(
               color: Colors.white,
             ),

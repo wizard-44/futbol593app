@@ -28,8 +28,18 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Stack(
             children: [
               Container(
-                color: Theme.of(context).primaryColorDark,
-                height: size * 0.4,
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Colors.yellow,
+                        Colors.blue,
+                        Colors.red,
+                      ]
+                    )
+                  ),
+                  height: size * 1,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 80.0, left: 35.0, right: 35.0),
@@ -39,12 +49,14 @@ class _SignUpPageState extends State<SignUpPage> {
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text("Registro de usuario",
                           style: Theme.of(context).textTheme.headline4!.apply(
-                              color: Theme.of(context).scaffoldBackgroundColor)),
+                              color: Theme.of(context).scaffoldBackgroundColor)
+                      ),
                     ),
                     Container(
                       decoration: BoxDecoration(
                         border: Border.all(
-                            color: Theme.of(context).hintColor, width: 2.0),
+                          color: Theme.of(context).hintColor, width: 2.0
+                        ),
                         color: Theme.of(context).scaffoldBackgroundColor,
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -63,7 +75,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                   onChanged: _signUpBloc.changeUsername,
                                   decoration: InputDecoration(
                                     errorText: snapshot.error?.toString(),
-                                    icon: const Icon(Icons.person),
+                                    icon: const Icon(
+                                      Icons.person,
+                                      size: 30
+                                    ),
                                     labelText: "Nombre",
                                     hintText: "Nombre y apellido"
                                   )
@@ -78,7 +93,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                   onChanged: _signUpBloc.changeEmail,
                                   decoration: InputDecoration(
                                     errorText: snapshot.error?.toString(),
-                                    icon: const Icon(Icons.email),
+                                    icon: const Icon(
+                                      Icons.email,
+                                      size: 30
+                                    ),
                                     labelText: "Correo electrónico",
                                     hintText: "admin@trifasic.com"
                                   )
@@ -101,11 +119,15 @@ class _SignUpPageState extends State<SignUpPage> {
                                       },
                                       icon: Icon(
                                         _obscureText
-                                            ? Icons.visibility
-                                            : Icons.visibility_off,
+                                          ? Icons.visibility_off
+                                          : Icons.visibility, 
+                                        size: 30
                                       )
                                     ),
-                                    icon: const Icon(Icons.lock),
+                                    icon: const Icon(
+                                      Icons.lock,
+                                      size: 30
+                                    ),
                                     labelText: "Contraseña"
                                   )
                                 );
@@ -117,10 +139,15 @@ class _SignUpPageState extends State<SignUpPage> {
                                 setState(() {});
                               },
                               value: _roleSelected,
-                              icon: const Icon(Icons.arrow_downward),
+                              icon: Icon(
+                                Icons.arrow_downward,
+                                size: 25,
+                                color: Theme.of(context).primaryColor
+                              ),
                               elevation: 16,
                               style: TextStyle(
-                                color: Theme.of(context).primaryColor
+                                color: Theme.of(context).primaryColor,
+                                fontSize:18,
                               ),
                               underline: Container(height: 2),
                               items: _roles
@@ -151,8 +178,17 @@ class _SignUpPageState extends State<SignUpPage> {
                                         }
                                       }
                                       : null,
-                                    icon: const Icon(Icons.login),
-                                    label: const Text("Ingresar")
+                                    icon: Icon(
+                                      Icons.login,
+                                      size: 30,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                    label: Text("Ingresar",
+                                      style:TextStyle(
+                                        fontSize:20,
+                                        color: Theme.of(context).primaryColor,
+                                      )
+                                    )
                                   );
                                 }
                               ),
@@ -160,7 +196,14 @@ class _SignUpPageState extends State<SignUpPage> {
                           ],
                         ),
                       ),
-                    )
+                    ),
+                    Padding(
+                      padding:const EdgeInsets.only(top: 50.0),
+                      child: Image.asset('assets/images/logo.png',
+                        height: 200.0,
+                        width: 200.0
+                      ),
+                    ),
                   ],
                 ),
               ),

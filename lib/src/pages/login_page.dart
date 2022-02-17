@@ -26,32 +26,44 @@ class _LoginPageState extends State<LoginPage> {
           child: Stack(
             children: [
               Container(
-                color: Theme.of(context).primaryColor,
-                height: size * 0.4,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Colors.yellow,
+                      Colors.blue,
+                      Colors.red,
+                    ]
+                  )
+                ),
+                height: size * 1,
               ),
               Padding(
-                padding:
-                    const EdgeInsets.only(top: 80.0, left: 30.0, right: 30.0),
+                padding:const EdgeInsets.only(top: 80.0, left: 30.0, right: 30.0),
                 child: Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text("Inicio de Sesion",
-                          style: Theme.of(context).textTheme.headline4!.apply(
-                              color:
-                                  Theme.of(context).scaffoldBackgroundColor)),
+                        style: Theme.of(context).textTheme.headline4!.apply(
+                          color:Theme.of(context).scaffoldBackgroundColor,
+                        ),      
+                      ),
                     ),
                     Container(
-                        height: 250.h,
+                        height: 300.h,
                         decoration: BoxDecoration(
                           border: Border.all(
-                              color: Theme.of(context).hintColor, width: 2.0),
+                            color: Theme.of(context).hintColor, width: 2.0
+                          ),
                           color: Theme.of(context).scaffoldBackgroundColor,
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 14.0, vertical: 25.0),
+                            horizontal: 14.0, vertical: 25.0
+                          ),
                           child: Column(
                             children: [
                               StreamBuilder<String>(
@@ -62,9 +74,13 @@ class _LoginPageState extends State<LoginPage> {
                                     onChanged: _loginBloc.changeEmail,
                                     decoration: InputDecoration(
                                       errorText: snapshot.error?.toString(),
-                                      icon: const Icon(Icons.email_rounded),
+                                      icon: const Icon(
+                                        Icons.email_rounded,
+                                        size: 30
+                                      ),
                                       labelText: "Correo electronico",
-                                      hintText: "usuario@gmail.com"
+                                      hintText: "usuario@gmail.com",
+                                      hintMaxLines: 1,
                                     )
                                   );
                                 }
@@ -78,17 +94,21 @@ class _LoginPageState extends State<LoginPage> {
                                     decoration: InputDecoration(
                                       errorText: snapshot.error?.toString(),
                                       suffixIcon: IconButton(
-                                          onPressed: () {
-                                            _obscureText = !_obscureText;
-                                            setState(() {});
-                                          },
-                                          icon: Icon(
-                                            _obscureText
-                                                ? Icons.visibility_off
-                                                : Icons.visibility,
-                                          )),
-                                      icon:
-                                          const Icon(Icons.lock_outline_rounded),
+                                        onPressed: () {
+                                          _obscureText = !_obscureText;
+                                          setState(() {});
+                                        },
+                                        icon: Icon(
+                                          _obscureText
+                                          ? Icons.visibility_off
+                                          : Icons.visibility, 
+                                          size: 30
+                                        )
+                                      ),
+                                      icon:const Icon(
+                                        Icons.lock_outline_rounded,
+                                        size: 30
+                                      ),
                                       labelText: "Contraseña ",
                                     )
                                   );
@@ -102,8 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                                     return ElevatedButton.icon(
                                       onPressed: snapshot.hasData?
                                       ()async {
-                                        final usrSrv =
-                                            UsuarioService(); //Servicio
+                                        final usrSrv = UsuarioService(); //Servicio
                                         final usr = Usuario(
                                             //Modelo
                                             email: _loginBloc.email,
@@ -115,25 +134,47 @@ class _LoginPageState extends State<LoginPage> {
                                           mainProvider.token =
                                               resp['idToken'];
                                         }
-                                      } : null
-                                      ,
-                                      icon: const Icon(Icons.login),
-                                      label: const Text("Ingresar")
+                                      } : null,
+                                      icon:  Icon(Icons.login,
+                                        size: 30,
+                                        color: Theme.of(context).primaryColor
+                                      ),
+                                      label: Text("Ingresar",
+                                        style: TextStyle(
+                                          fontSize:20,
+                                          color: Theme.of(context).primaryColor
+                                        )
+                                      )
                                     );
                                   }
                                 ),
-                              )
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 25),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text("¿No tiene Cuenta?"),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, "/signup");
+                                      },
+                                      child: Text("Registrese",style: TextStyle(color: Theme.of(context).primaryColor))
+                                    )
+                                  ]
+                                ),
+                              ),
                             ],
                           ),
-                        )),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      const Text("¿No tiene Cuenta?"),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, "/signup");
-                          },
-                          child: const Text("Registrese"))
-                    ]),
+                        ),
+                    ),
+                    Padding(
+                      padding:const EdgeInsets.only(top: 50.0),
+                      child: Image.asset('assets/images/logo.png',
+                        height: 200.0,
+                        width: 200.0
+                      ),
+                    ),
                   ],
                 ),
               ),
