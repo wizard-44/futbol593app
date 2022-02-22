@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:futbol593/src/pages/estadio_page.dart';
 import 'package:futbol593/src/pages/home_page.dart';
 import 'package:futbol593/src/widgets/equipos_list.dart';
 
@@ -34,8 +35,16 @@ class MenuLateral extends StatelessWidget {
         ),
         ListTile(
           leading: const Icon(Icons.calendar_today_rounded),
-          title: const Text('Calendario'),
-          onTap: () {}
+          title: const Text('Estadios'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    const EstadioPage()
+              ),
+            );
+          }
         ),
         ListTile(
           leading: const Icon(Icons.group_work_rounded),

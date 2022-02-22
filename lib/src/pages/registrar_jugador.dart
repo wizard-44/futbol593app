@@ -59,106 +59,113 @@ class _RegistrarJugadorState extends State<RegistrarJugador> {
                       border: Border.all(
                           width: 2.0, color: Theme.of(context).primaryColorDark)),
                   child: Form(
-                      key: _formKey,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 14.0, horizontal: 7.0),
-                        child: Column(children: [
-                          TextFormField(
-                              keyboardType: TextInputType.text,
-                              initialValue: _jugador.nombre,
-                              onSaved: (value) {
-                                //Este evento se ejecuta cuando el Form ha sido guardado localmente
-                                _jugador.nombre =
-                                    value; //Asigna el valor del TextFormField al atributo del modelo
-                              },
-                              decoration: const InputDecoration(
-                                labelText: "Ingrese el Nombre:",
-                              ),
-                              maxLength: 255,
-                              maxLines: 1),
-                          TextFormField(
-                            keyboardType: TextInputType.number,
+                    key: _formKey,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 14.0, horizontal: 7.0),
+                      child: Column(children: [
+                        TextFormField(
+                            keyboardType: TextInputType.text,
+                            initialValue: _jugador.nombre,
                             onSaved: (value) {
                               //Este evento se ejecuta cuando el Form ha sido guardado localmente
-                              _jugador.edad = int.parse(
-                                  value!); //Asigna el valor del TextFormField al atributo del modelo
+                              _jugador.nombre =
+                                  value; //Asigna el valor del TextFormField al atributo del modelo
                             },
                             decoration: const InputDecoration(
-                              labelText: "Ingrese la Edad:",
+                              labelText: "Ingrese el Nombre:",
                             ),
+                            maxLength: 255,
+                            maxLines: 1),
+                        TextFormField(
+                          keyboardType: TextInputType.number,
+                          onSaved: (value) {
+                            //Este evento se ejecuta cuando el Form ha sido guardado localmente
+                            _jugador.edad = int.parse(
+                                value!); //Asigna el valor del TextFormField al atributo del modelo
+                          },
+                          decoration: const InputDecoration(
+                            labelText: "Ingrese la Edad:",
                           ),
-                          TextFormField(
-                              keyboardType: TextInputType.text,
-                              initialValue: _jugador.nacionalidad,
-                              onSaved: (value) {
-                                //Este evento se ejecuta cuando el Form ha sido guardado localmente
-                                _jugador.nacionalidad =
-                                    value; //Asigna el valor del TextFormField al atributo del modelo
+                        ),
+                        TextFormField(
+                            keyboardType: TextInputType.text,
+                            initialValue: _jugador.nacionalidad,
+                            onSaved: (value) {
+                              //Este evento se ejecuta cuando el Form ha sido guardado localmente
+                              _jugador.nacionalidad =
+                                  value; //Asigna el valor del TextFormField al atributo del modelo
+                            },
+                            decoration: const InputDecoration(
+                              labelText: "Ingrese la Nacionalidad:",
+                            ),
+                            maxLength: 255,
+                            maxLines: 1),
+                        TextFormField(
+                            keyboardType: TextInputType.text,
+                            initialValue: _jugador.posicion,
+                            onSaved: (value) {
+                              //Este evento se ejecuta cuando el Form ha sido guardado localmente
+                              _jugador.posicion =
+                                  value; //Asigna el valor del TextFormField al atributo del modelo
+                            },
+                            decoration: const InputDecoration(
+                              labelText: "Ingrese el Posicion:",
+                            ),
+                            maxLength: 255,
+                            maxLines: 1
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0, bottom: 5),
+                          child: Text("Seleccione la imagen",
+                            style: Theme.of(context).textTheme.subtitle1
+                          )
+                        ),
+                        SizedBox(
+                          height: 100.h,
+                          width: 160.h,
+                          child: Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: _imagen == null
+                                ? Image.asset('assets/images/logo.jpg')
+                                : Image.file(_imagen!),
+                          )
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ElevatedButton.icon(
+                              onPressed: () =>
+                                  _selectImage(ImageSource.camera),
+                              icon: const Icon(Icons.camera),
+                              label: const Text("Cámara")
+                            ),
+                            ElevatedButton.icon(
+                              onPressed: () =>
+                                  _selectImage(ImageSource.gallery),
+                              icon: const Icon(Icons.image),
+                              label: const Text("Galería")
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          child: _onSaving
+                          ? const CircularProgressIndicator()
+                          : Tooltip(
+                            message: "Registrar Jugador",
+                            child: ElevatedButton.icon(
+                              onPressed: () {
+                                _sendForm();
                               },
-                              decoration: const InputDecoration(
-                                labelText: "Ingrese la Nacionalidad:",
-                              ),
-                              maxLength: 255,
-                              maxLines: 1),
-                          TextFormField(
-                              keyboardType: TextInputType.text,
-                              initialValue: _jugador.posicion,
-                              onSaved: (value) {
-                                //Este evento se ejecuta cuando el Form ha sido guardado localmente
-                                _jugador.posicion =
-                                    value; //Asigna el valor del TextFormField al atributo del modelo
-                              },
-                              decoration: const InputDecoration(
-                                labelText: "Ingrese el Posicion:",
-                              ),
-                              maxLength: 255,
-                              maxLines: 1
-                          ),
-                          Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 10.0, bottom: 5),
-                              child: Text("Seleccione la imagen",
-                                  style: Theme.of(context).textTheme.subtitle1)),
-                          SizedBox(
-                              height: 100.h,
-                              width: 160.h,
-                              child: Padding(
-                                padding: const EdgeInsets.all(3.0),
-                                child: _imagen == null
-                                    ? Image.asset('assets/images/logo.jpg')
-                                    : Image.file(_imagen!),
-                              )),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ElevatedButton.icon(
-                                  onPressed: () =>
-                                      _selectImage(ImageSource.camera),
-                                  icon: const Icon(Icons.camera),
-                                  label: const Text("Cámara")),
-                              ElevatedButton.icon(
-                                  onPressed: () =>
-                                      _selectImage(ImageSource.gallery),
-                                  icon: const Icon(Icons.image),
-                                  label: const Text("Galería")),
-                            ],
-                          ),
-                          Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10.0),
-                              child: _onSaving
-                                  ? const CircularProgressIndicator()
-                                  : Tooltip(
-                                      message: "Registrar Jugador",
-                                      child: ElevatedButton.icon(
-                                          onPressed: () {
-                                            _sendForm();
-                                          },
-                                          label: const Text("Guardar"),
-                                          icon: const Icon(Icons.save)),
-                                    ))
-                        ]),
-                      )),
+                              label: const Text("Guardar"),
+                              icon: const Icon(Icons.save)
+                            ),
+                          )
+                        )
+                      ]),
+                    )
+                  ),
                 ),
               ],
             ),
@@ -185,8 +192,9 @@ class _RegistrarJugadorState extends State<RegistrarJugador> {
     _onSaving = true;
     setState(() {});
 
-    _formKey.currentState!.save(); //Guarda el form localmente
-
+    _formKey.currentState!.save();
+    
+    //Guarda el form localmente
     if (_imagen != null) {
       _jugador.urlfoto = await _jugadorService.uploadImage(_imagen!);
       _jugador.numgoles = 0;

@@ -2,7 +2,7 @@
     package="com.example.futbol593">
    <application
         android:label="futbol593"
-        android:icon="@mipmap/launcher_icon">
+        android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -37,5 +37,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAF5JKbcJ5i9VoBues13Y-kmfdYXnntJIg"/>
     </application>
 </manifest>

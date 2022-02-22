@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:developer' as developer;
+import 'dart:io';
+import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:futbol593/src/models/usuario_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -45,6 +47,22 @@ class UsuarioService {
     } catch (ex) {
       developer.log("Error $ex");
       return 500;
+    }
+  }
+
+  Future<String> uploadImage(File image) async {
+    final cloudinary =
+        CloudinaryPublic('ddqtgttih', 'futbol593', cache: false);
+    try {
+      CloudinaryResponse response = await cloudinary.uploadFile(
+        CloudinaryFile.fromFile(image.path,
+            resourceType: CloudinaryResourceType.Image,
+            folder: "futbol593/Usuarios/"
+        ),
+      );
+      return response.secureUrl;
+    } on CloudinaryException catch (e) {
+      return "" + e.toString();
     }
   }
 }

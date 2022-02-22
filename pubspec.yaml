@@ -46,6 +46,16 @@ dependencies:
   cloudinary_public: ^0.11.0
   rxdart: ^0.27.3
   jwt_decoder: ^2.0.1
+  firebase_core: ^1.12.0
+  cloud_firestore: ^3.1.8
+  firebase_messaging: ^11.2.6
+  flutter_local_notifications: ^9.3.2
+  google_maps_flutter: ^2.1.1
+  intl: ^0.17.0
+
+dependency_overrides:
+  # Override for `flutter_local_notifications`:
+  plugin_platform_interface: ^2.1.2
 
 dev_dependencies:
   flutter_test:
@@ -82,6 +92,7 @@ flutter:
   - assets/images/logo.png
   - assets/images/logo_2.png
   - assets/images/letras.png
+  - assets/images/user.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

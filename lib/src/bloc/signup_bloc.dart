@@ -16,7 +16,11 @@ class SignUpBloc with Validator {
   Stream<String> get usernameStream =>
       _usernameController.stream.transform(usernameValidator);
   Stream<bool> get formSignUpStream => Rx.combineLatest3(
-      usernameStream, emailStream, passwordStream, (a, b, c) => true);
+      usernameStream,
+      emailStream,
+      passwordStream,
+       (a, b, c) => true
+  );
   //Funciones para el onChange cada control
   Function(String) get changeEmail => _emailController.sink.add;
   Function(String) get changePassword => _passwordController.sink.add;

@@ -52,6 +52,14 @@ class SettingPage extends StatelessWidget {
                 )
               ),
             ),
+            CircleAvatar(
+              radius: 80,
+              backgroundColor: Colors.indigo,
+              child: CircleAvatar(
+                radius: 70,
+                 backgroundImage:NetworkImage(content["foto"])  
+              ),
+            ),
             Card(
               child: ListTile(
                 leading: const Icon(
@@ -60,6 +68,34 @@ class SettingPage extends StatelessWidget {
                 ),
                 title: Text(content["name"]),
                 subtitle: const Text("Nombre Usuario")
+              )
+            ),
+            Card(
+              child: ListTile(
+                leading: const Icon(
+                  Icons.email,
+                  size: 35
+                ),
+                title: Text(content["email"]),
+                subtitle: const Text("Correo electrónico")
+              )
+            ),
+            Card(
+              child: ListTile(
+                leading: const Icon(
+                  Icons.calendar_today,
+                  size: 35
+                ),
+                title: content.containsKey("fechaNacimiento")
+                  ? Text( content['fechaNacimiento'],
+                    style: const TextStyle(
+                      fontSize: 18,
+                    )
+                  )
+                  : const Text(
+                    "Sin Fecha de Nacimiento",
+                  ),
+                subtitle: const Text("Fecha de Nacimiento")
               )
             ),
             Card(
@@ -80,16 +116,6 @@ class SettingPage extends StatelessWidget {
                 ),
                 title: Text(content["user_id"]),
                 subtitle: const Text("Id")
-              )
-            ),
-            Card(
-              child: ListTile(
-                leading: const Icon(
-                  Icons.email,
-                  size: 35
-                ),
-                title: Text(content["email"]),
-                subtitle: const Text("Correo electrónico")
               )
             ),
             const Padding(
@@ -116,7 +142,6 @@ class SettingPage extends StatelessWidget {
 
 class SettingMode extends StatelessWidget {
   const SettingMode({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final mainProvider = Provider.of<MainProvider>(context);

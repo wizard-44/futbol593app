@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "260281987109",
+    "project_id": "f593backend",
+    "storage_bucket": "f593backend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260281987109:android:9203e6b11e9d188c01cfcc",
+        "android_client_info": {
+          "package_name": "com.example.futbol593"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260281987109-fo2s9jakob7fvo2f7fs0i6og8q5uopil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeGrLpsSeDKdlBFBmj7IGVyyN3ywVX2v4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260281987109-fo2s9jakob7fvo2f7fs0i6og8q5uopil.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
