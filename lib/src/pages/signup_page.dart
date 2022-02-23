@@ -1,7 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:futbol593/src/bloc/signup_bloc.dart';
@@ -32,22 +31,6 @@ class _SignUpPageState extends State<SignUpPage> {
   String? FechaNac;
   DateTime date = DateTime.now();
   var formatter = DateFormat('yyyy-MM-dd');
-  DateTime fromDate =
-      DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
-
-  Future<DateTime> selectDate(BuildContext context, DateTime _date) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _date,
-      firstDate: DateTime(1950),
-      lastDate: DateTime.now(),
-    );
-
-    if (picked != null) {
-      _date = picked;
-    }
-    return _date;
-  }
 
   @override
   void dispose() {
@@ -158,9 +141,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     lastDate: DateTime.now(),
                                     confirmText: "Aceptar",
                                     cancelText: "Cancelar");
-
                                 if (newDate == null) return;
-
                                 setState(() {
                                   date = newDate;
                                   FechaNac = date.toString();

@@ -51,8 +51,7 @@ class UsuarioService {
   }
 
   Future<String> uploadImage(File image) async {
-    final cloudinary =
-        CloudinaryPublic('ddqtgttih', 'futbol593', cache: false);
+    final cloudinary =CloudinaryPublic('ddqtgttih', 'futbol593', cache: false);
     try {
       CloudinaryResponse response = await cloudinary.uploadFile(
         CloudinaryFile.fromFile(image.path,
