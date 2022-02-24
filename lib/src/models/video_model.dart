@@ -16,14 +16,14 @@ class Video {
     String? url;
 
     factory Video.fromJson(Map<String, dynamic> json) => Video(
-        titulo: json["Titulo"],
-        descripcion: json["Descripcion"],
-        url: json["Url"],
+        titulo: json["titulo"],
+        descripcion: json["descripcion"],
+        url: json["url"],
     );
 
     Map<String, dynamic> toJson() => {
-        "Titulo": titulo,
-        "Descripcion": descripcion,
-        "Url": url,
+        "titulo": titulo,
+        "descripcion": descripcion,
+        "url": url,
     };
 }

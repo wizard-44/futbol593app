@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:futbol593/src/pages/estadio_page.dart';
 import 'package:futbol593/src/pages/home_page.dart';
-import 'package:futbol593/src/pages/mejores_jugadas.dart';
+import 'package:futbol593/src/pages/mejores_jugadas_list.dart';
 import 'package:futbol593/src/widgets/equipos_list.dart';
 
 class MenuLateral extends StatelessWidget {
