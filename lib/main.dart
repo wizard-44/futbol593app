@@ -133,9 +133,10 @@ class _AppState extends State<App> {
             );
           }
           return const SizedBox.square(
-              dimension: 100.0,
-              child: CircularProgressIndicator(
-                color:Colors.white)
+            dimension: 100.0,
+            child: CircularProgressIndicator(
+              color:Colors.white
+            )
           );
         }
     );

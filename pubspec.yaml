@@ -52,7 +52,9 @@ dependencies:
   flutter_local_notifications: ^9.3.2
   google_maps_flutter: ^2.1.1
   intl: ^0.17.0
-
+  geolocator: ^8.0.5
+  video_player: ^2.2.17
+  
 dependency_overrides:
   # Override for `flutter_local_notifications`:
   plugin_platform_interface: ^2.1.2

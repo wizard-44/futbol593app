@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:futbol593/src/pages/estadio_page.dart';
 import 'package:futbol593/src/pages/home_page.dart';
+import 'package:futbol593/src/pages/mejores_jugadas.dart';
 import 'package:futbol593/src/widgets/equipos_list.dart';
 
 class MenuLateral extends StatelessWidget {
@@ -60,9 +61,16 @@ class MenuLateral extends StatelessWidget {
           }
         ),
         ListTile(
-          leading: const Icon(Icons.pivot_table_chart_rounded),
-          title: const Text('Tabla Posiciones'),
-          onTap: () {}
+          leading: const Icon(Icons.video_label),
+          title: const Text('Mejores Jugadas'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MejoresMomentos()
+              ),
+            );
+          }
         ),
       ]),
     );
