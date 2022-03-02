@@ -24,7 +24,8 @@ class _EstadioPageState extends State<EstadioPage> {
     zoom: 6,
   );
 
-  
+  MapType _currentMapType = MapType.normal;
+
   final Stream<QuerySnapshot> _estadioStrem = FirebaseFirestore.instance.collection('Estadios').snapshots();
   @override
   Widget build(BuildContext context) {
@@ -45,21 +46,22 @@ class _EstadioPageState extends State<EstadioPage> {
         ),
         body: StreamBuilder<QuerySnapshot>(
           stream: _estadioStrem,
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          builder:(BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
               developer.log(snapshot.toString());
               return const Center(
-                child:
-                    SizedBox(child: Text('Error al consultar los estadios.')),
+                child:SizedBox(
+                  child: Text('Error al consultar los estadios.')
+                ),
               );
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: SizedBox(
-                    height: 50.0,
-                    width: 50.0,
-                    child: CircularProgressIndicator()),
+                  height: 50.0,
+                  width: 50.0,
+                  child: CircularProgressIndicator()
+                ),
               );
             }
             if (snapshot.hasData) {
@@ -70,28 +72,43 @@ class _EstadioPageState extends State<EstadioPage> {
                     BitmapDescriptor.hueYellow
                   ),
                   infoWindow: InfoWindow(title: model.nombre),
-                  markerId: const MarkerId("Ubicacion"),
+                  markerId: const MarkerId(""),
                   position: LatLng(model.lat ?? -0.8065816167259572,model.lng ?? -78.64665912441133)
                 );
                 return marker;
               }).toSet();
               return Scaffold(
-                body:GoogleMap(
-                  myLocationEnabled: true,
+                body:GoogleMap(                  
                   markers: kMnts,
-                  mapType: MapType.terrain,
+                  mapType: _currentMapType,
                   initialCameraPosition: _PosicionCam,
                   onMapCreated: (GoogleMapController controller) {
                     _controller.complete(controller);
                   },
                 ),
-                floatingActionButton: FloatingActionButton.extended(
-                  onPressed: _MiUbicacion,
-                  label: const Text('Mi Ubicacion',style: TextStyle(color: Colors.white),),
-                  icon: const Icon(Icons.location_searching,color: Colors.white,),
-                  backgroundColor: Colors.indigo,
+                floatingActionButton: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children:[
+                     Padding(
+                       padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                       child: FloatingActionButton.extended(
+                        elevation: 20.0,
+                        onPressed: _MiUbicacion,
+                        label: const Text('Mi Ubicacion',style: TextStyle(color: Colors.white),),
+                        icon: const Icon(Icons.location_searching,color: Colors.white,),
+                        backgroundColor: Colors.indigo,
+                    ),
+                     ),
+                    FloatingActionButton.extended(   
+                      elevation: 20.0,        
+                      label: const Text('Mapa',style: TextStyle(color: Colors.white),),
+                      icon: const Icon(Icons.layers,color: Colors.white,),
+                      onPressed: _toggleMapType,
+                      backgroundColor: Colors.indigo,
+                    ),
+                  ],
                 ),
-                floatingActionButtonLocation:FloatingActionButtonLocation.miniStartFloat,
+                floatingActionButtonLocation:FloatingActionButtonLocation.endTop,
               );
             }
             return const SizedBox();
@@ -101,13 +118,19 @@ class _EstadioPageState extends State<EstadioPage> {
       ),
     );
   }
-   Future<void> _MiUbicacion() async {
+  
+  Future<void> _MiUbicacion() async {
     Position posicion = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     LatLng posicionActual= LatLng(posicion.latitude, posicion.longitude);
     CameraPosition miposicion= CameraPosition(target:posicionActual, zoom: 16);
 
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(miposicion));
+  }
+
+  void _toggleMapType(){    
+   setState(() { _currentMapType = (_currentMapType == MapType.normal) ? MapType.satellite : MapType.normal;  
+   });
   }
   
 }

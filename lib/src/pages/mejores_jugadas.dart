@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:futbol593/src/models/video_model.dart';
 import 'package:video_player/video_player.dart';
-import 'dart:developer' as developer;
 
 class MejoresJugadas extends StatefulWidget {
   const MejoresJugadas({Key? key,required this.model}) : super(key: key);

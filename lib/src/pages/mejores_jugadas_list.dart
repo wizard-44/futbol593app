@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:futbol593/src/models/video_model.dart';
 import 'package:futbol593/src/pages/mejores_jugadas.dart';
-import 'package:video_player/video_player.dart';
 import 'dart:developer' as developer;
 
 class MejoresMomentos extends StatefulWidget {
@@ -14,7 +13,6 @@ class MejoresMomentos extends StatefulWidget {
  
 class MejoresMomentosState extends State<MejoresMomentos> {
   Color mainColor = const Color(0xFF1A1C1E);
-  VideoPlayerController? _controller;
   final Stream<QuerySnapshot> _videosStrem = FirebaseFirestore.instance.collection('Videos').snapshots();
 
   @override
