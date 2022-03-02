@@ -40,7 +40,7 @@ class MejoresMomentosState extends State<MejoresMomentos> {
                 developer.log(snapshot.toString());
                 return const Center(
                   child:
-                      SizedBox(child: Text('Error al consultar los estadios.')),
+                      SizedBox(child: Text('Error al consultar las mejores jugadas.')),
                 );
               }
               if (snapshot.connectionState == ConnectionState.waiting) {
